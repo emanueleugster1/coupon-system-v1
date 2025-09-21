@@ -591,18 +591,19 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: var(--spacing-lg);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-xl);
     background: var(--background-primary);
     border-radius: var(--border-radius-lg);
-    box-shadow: var(--shadow-sm);
 }
 
 .filters-container {
     display: flex;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-xl);
     align-items: center;
     flex: 1;
     justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .custom-dropdown {
@@ -613,7 +614,7 @@ body {
 
 .dropdown-toggle {
     appearance: none;
-    padding: var(--spacing-md) 40px var(--spacing-md) var(--spacing-md);
+    padding: var(--spacing-lg) 48px var(--spacing-lg) var(--spacing-lg);
     border: 1px solid var(--brand-primary);
     border-radius: var(--border-radius-full);
     font-size: var(--font-size-body2);
@@ -622,16 +623,20 @@ body {
     color: var(--light-primary);
     cursor: pointer;
     transition: all 0.2s ease;
-    min-width: 140px;
+    min-width: 180px;
     font-weight: var(--font-weight-medium);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-shadow: var(--shadow-sm);
+    letter-spacing: 0.5px;
 }
 
 .dropdown-toggle:hover {
     background: var(--brand-secondary);
     border-color: var(--brand-secondary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
 }
 
 .dropdown-arrow {
@@ -762,12 +767,19 @@ body {
     color: var(--light-primary);
 }
 
+/* Desktop table view - default display */
 .benefits-table-container {
     background: var(--background-primary);
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-sm);
     overflow: hidden;
     margin-bottom: var(--spacing-lg);
+}
+
+/* Mobile cards view - hidden by default */
+.benefits-mobile-cards {
+    display: none;
+    gap: var(--spacing-md);
 }
 
 .benefits-table {
@@ -1021,6 +1033,8 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: var(--spacing-xl);
+    margin-left: var(--spacing-md);
+    margin-right: var(--spacing-md);
 }
 
 .btn-back {
@@ -1389,6 +1403,10 @@ body {
     /* Mobile menu toggle */
     .mobile-menu-toggle {
         display: block;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        z-index: 1001;
     }
     
     /* Header adjustments for mobile */
@@ -1456,31 +1474,201 @@ body {
         align-self: flex-end;
     }
     
+    /* Page Header Responsive Styles */
+    .page-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-lg);
+        margin: var(--spacing-md);
+    }
+    
+    .header-content {
+        order: 1;
+    }
+    
+    .header-right {
+        order: 2;
+        flex-direction: column;
+        gap: var(--spacing-md);
+        align-items: stretch;
+    }
+    
+    .btn-delete-benefit {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Benefits List Responsive Styles */
+    .benefits-section-wrapper {
+        margin: var(--spacing-xs);
+        padding: var(--spacing-sm);
+    }
+    
     .benefits-search-header {
         flex-direction: column;
         gap: var(--spacing-md);
+        align-items: stretch;
     }
     
     .search-container {
         max-width: none;
+        order: 1;
+    }
+    
+    .create-btn {
+        order: 2;
+        width: 100%;
+        text-align: center;
+        padding: var(--spacing-lg);
+        font-size: var(--font-size-button1);
     }
     
     .benefits-filters-header {
         flex-direction: column;
-        gap: var(--spacing-md);
+        gap: var(--spacing-lg);
+        padding: var(--spacing-lg);
+        align-items: stretch;
     }
     
     .filters-container {
-        flex-direction: column;
+        flex-direction: row;
+        gap: var(--spacing-lg);
+        justify-content: center;
+        max-width: none;
+        margin: 0;
+        flex-wrap: wrap;
+    }
+    
+    .custom-dropdown {
+        flex: 1;
+        min-width: 200px;
+        max-width: 280px;
+    }
+    
+    .dropdown-toggle {
+        width: 100%;
+        justify-content: space-between;
+        padding: var(--spacing-lg) var(--spacing-md);
+        font-size: var(--font-size-body1);
+        min-width: auto;
+        border-radius: var(--border-radius-lg);
+    }
+    
+    .dropdown-menu {
+        left: 0;
+        right: 0;
+        min-width: auto;
+    }
+    
+    .view-options {
+        justify-content: center;
+        gap: var(--spacing-md);
+        margin-top: var(--spacing-md);
+    }
+    
+    .view-btn {
+        width: 48px;
+        height: 48px;
+        font-size: var(--font-size-body1);
+    }
+    
+    /* Mobile Card View for Table */
+    .benefits-table-container {
+        display: none;
+    }
+    
+    .benefits-mobile-cards {
+        display: block;
         gap: var(--spacing-md);
     }
     
-    .benefits-table-container {
-        overflow-x: auto;
+    .benefit-card {
+        background: var(--background-primary);
+        border-radius: var(--border-radius-lg);
+        padding: var(--spacing-lg);
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--light-quaternary);
+        margin-bottom: var(--spacing-md);
     }
     
-    .benefits-table {
-        min-width: 600px;
+    .benefit-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+    
+    .benefit-card-code {
+        font-size: var(--font-size-h5);
+        font-weight: var(--font-weight-bold);
+        color: var(--brand-primary);
+        flex: 1;
+    }
+    
+    .benefit-card-status {
+        flex-shrink: 0;
+    }
+    
+    .benefit-card-body {
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .benefit-card-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--spacing-sm) 0;
+        border-bottom: 1px solid var(--light-tertiary);
+    }
+    
+    .benefit-card-row:last-child {
+        border-bottom: none;
+    }
+    
+    .benefit-card-label {
+        font-size: var(--font-size-body2);
+        font-weight: var(--font-weight-medium);
+        color: var(--text-secondary);
+        flex: 1;
+    }
+    
+    .benefit-card-value {
+        font-size: var(--font-size-body2);
+        color: var(--text-primary);
+        text-align: right;
+        flex: 1;
+    }
+    
+    .benefit-card-actions {
+        display: flex;
+        gap: var(--spacing-sm);
+        justify-content: center;
+        padding-top: var(--spacing-md);
+        border-top: 1px solid var(--light-tertiary);
+    }
+    
+    .benefit-card-actions .action-btn {
+        flex: 1;
+        padding: var(--spacing-md);
+        border-radius: var(--border-radius-md);
+        font-size: var(--font-size-body2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--spacing-sm);
+    }
+    
+    /* Pagination responsive */
+    .pagination {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--spacing-sm);
+    }
+    
+    .pagination-btn {
+        min-width: 44px;
+        height: 44px;
     }
 }
 
@@ -1500,17 +1688,135 @@ body {
     }
     
     .header {
-        padding: 0 16px 0 20px;
+        padding-left: 70px;
     }
     
     .mobile-menu-toggle {
         width: 35px;
         height: 35px;
         font-size: 16px;
+        top: 12px;
+        left: 12px;
     }
     
     .btn {
         width: 100%;
         justify-content: center;
+    }
+    
+    /* Page Header Extra Small Screen Adjustments */
+    .page-header {
+        margin: var(--spacing-sm);
+        gap: var(--spacing-md);
+    }
+    
+    .header-right {
+        gap: var(--spacing-sm);
+    }
+    
+    .toggle-switch {
+        align-self: center;
+    }
+    
+    /* Extra small screen adjustments for Benefits List */
+    .benefits-section-wrapper {
+        margin: 0;
+        padding: var(--spacing-xs);
+    }
+    
+    .benefits-search-header {
+        gap: var(--spacing-sm);
+    }
+    
+    .search-input {
+        padding: var(--spacing-md) var(--spacing-sm) var(--spacing-md) 40px;
+        font-size: var(--font-size-body2);
+    }
+    
+    .search-icon {
+        left: var(--spacing-sm);
+    }
+    
+    .create-btn {
+        padding: var(--spacing-md);
+        font-size: var(--font-size-body2);
+    }
+    
+    .benefits-filters-header {
+        padding: var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+    
+    .filters-container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        max-width: none;
+        margin: 0;
+    }
+    
+    .custom-dropdown {
+        width: 100%;
+        min-width: auto;
+        max-width: none;
+    }
+    
+    .dropdown-toggle {
+        padding: var(--spacing-md) var(--spacing-sm);
+        font-size: var(--font-size-body2);
+        min-width: auto;
+        border-radius: var(--border-radius-md);
+    }
+    
+    .view-btn {
+        width: 40px;
+        height: 40px;
+        font-size: var(--font-size-body2);
+    }
+    
+    .benefit-card {
+        padding: var(--spacing-md);
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .benefit-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+    
+    .benefit-card-code {
+        font-size: var(--font-size-body1);
+    }
+    
+    .benefit-card-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+        padding: var(--spacing-xs) 0;
+    }
+    
+    .benefit-card-label {
+        font-size: var(--font-size-body2);
+    }
+    
+    .benefit-card-value {
+        font-size: var(--font-size-body2);
+        text-align: left;
+    }
+    
+    .benefit-card-actions {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+    
+    .benefit-card-actions .action-btn {
+        padding: var(--spacing-sm);
+        font-size: var(--font-size-body2);
+    }
+    
+    .pagination-btn {
+        min-width: 40px;
+        height: 40px;
+        font-size: var(--font-size-body2);
     }
 }

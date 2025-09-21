@@ -399,11 +399,75 @@ switch ($action) {
                                         <?php endforeach; ?>
                                     <?php else: ?>
                                         <tr>
-                                            <td colspan="6" class="text-center">No hay cupones disponibles</td>
+                                            <td colspan="7" class="text-center">No hay cupones disponibles</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>
                             </table>
+                        </div>
+
+                        <!-- Mobile Card View -->
+                        <div class="benefits-mobile-cards">
+                            <?php if (!empty($cupones)): ?>
+                                <?php foreach ($cupones as $cupon_item): ?>
+                                    <div class="benefit-card" data-estado="<?php echo $cupon_item['estado']; ?>">
+                                        <div class="benefit-card-header">
+                                            <div class="benefit-card-code"><?php echo htmlspecialchars($cupon_item['codigo']); ?></div>
+                                            <div class="benefit-card-status">
+                                                <span class="status-badge <?php 
+                                                    if ($cupon_item['estado'] === 'activo') {
+                                                        echo 'active';
+                                                    } elseif ($cupon_item['estado'] === 'canjeado') {
+                                                        echo 'redeemed';
+                                                    } else {
+                                                        echo 'inactive';
+                                                    }
+                                                ?>">
+                                                    <?php echo strtoupper($cupon_item['estado']); ?>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="benefit-card-body">
+                                            <div class="benefit-card-row">
+                                                <div class="benefit-card-label">Descripción:</div>
+                                                <div class="benefit-card-value"><?php echo htmlspecialchars($cupon_item['descripcion']); ?></div>
+                                            </div>
+                                            <div class="benefit-card-row">
+                                                <div class="benefit-card-label">Valor:</div>
+                                                <div class="benefit-card-value"><?php echo $cupon_item['valor']; ?></div>
+                                            </div>
+                                            <div class="benefit-card-row">
+                                                <div class="benefit-card-label">Fecha de Expiración:</div>
+                                                <div class="benefit-card-value"><?php echo date('d/m/Y', strtotime($cupon_item['fecha_expiracion'])); ?></div>
+                                            </div>
+                                            <?php if (!empty($cupon_item['usuario_canje'])): ?>
+                                            <div class="benefit-card-row">
+                                                <div class="benefit-card-label">Usuario que Canjeó:</div>
+                                                <div class="benefit-card-value"><?php echo htmlspecialchars($cupon_item['usuario_canje']); ?></div>
+                                            </div>
+                                            <?php endif; ?>
+                                        </div>
+                                        
+                                        <div class="benefit-card-actions">
+                                            <button class="action-btn edit" onclick="editarCupon(<?php echo $cupon_item['id']; ?>)" title="Editar">
+                                                <i class="bi bi-pencil"></i>
+                                                <span>Editar</span>
+                                            </button>
+                                            <button class="action-btn delete" onclick="eliminarCupon(<?php echo $cupon_item['id']; ?>, '<?php echo htmlspecialchars($cupon_item['codigo']); ?>')" title="Eliminar">
+                                                <i class="bi bi-trash"></i>
+                                                <span>Eliminar</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <div class="benefit-card">
+                                    <div class="benefit-card-body">
+                                        <div class="text-center">No hay cupones disponibles</div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                         </div>
 
                         <div class="pagination">

@@ -113,11 +113,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 </div>
                 
                 <!-- Recordarme y Olvidaste contraseña -->
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
-                    <div class="form-checkbox-group" style="margin-bottom: 0;">
-                        <input type="checkbox" id="remember" name="remember" class="form-checkbox">
-                        <label for="remember" class="checkbox-label">Recuérdame</label>
-                    </div>
+                <div class="form-checkbox-group" style="margin-bottom: 0;">
+                    <input type="checkbox" id="remember" name="remember" class="form-checkbox">
+                    <label for="remember" class="checkbox-label">Recuérdame</label>
+                </div>
+                
+                <div class="forgot-password">
                     <a href="forgot-password.php" class="form-link">¿Olvidaste tu contraseña?</a>
                 </div>
                 
